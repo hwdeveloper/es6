@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script>
+
+
+
+        //3,暂时性死区
+        var tmp = 123;
+
+        if (true) {
+            let tmp = 'abc'; // ReferenceError
+        }
+        console.log(tmp);
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

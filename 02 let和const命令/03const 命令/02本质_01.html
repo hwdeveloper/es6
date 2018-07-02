@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script>
+
+        const foo = {};
+
+        // 为 foo 添加一个属性，可以成功
+        foo.prop = 123;
+        foo.prop // 123
+
+        // 将 foo 指向另一个对象，就会报错
+        foo = {}; // TypeError: "foo" is read-only
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

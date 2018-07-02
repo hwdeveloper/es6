@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script>
+        // 例一
+        function f(x = 1, y) {
+            return [x, y];
+        }
+
+        f() // [1, undefined]
+        f(2) // [2, undefined])
+        f(, 1) // 报错
+        f(undefined, 1) // [1, 1]
+
+        // 例二
+        function f(x, y = 5, z) {
+            return [x, y, z];
+        }
+
+        f() // [undefined, 5, undefined]
+        f(1) // [1, 5, undefined]
+        f(1, ,2) // 报错
+        f(1, undefined, 2) // [1, 5, 2]
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>
