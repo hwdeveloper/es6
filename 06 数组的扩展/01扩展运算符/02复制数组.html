@@ -4,11 +4,13 @@
     <meta charset="utf-8">
     <title>数据结构</title>
     <script>
-        const a1 = [1, 2];
-        // 写法一
-        const a2 = [...a1];
-        // 写法二
-        const [...a2] = a1;
+        const array1 = [1, 2,3];
+        const array2 = [...array1];
+
+        array2[0]=5;
+
+        console.log(array1[0]);
+        console.log(array2[0]);
 
     </script>
 </head>
