@@ -4,10 +4,14 @@
     <meta charset="utf-8">
     <title>数据结构</title>
     <script>
-        // 全部报错
-        ({ p: a }) = { p: 42 };
-        ([a]) = [5];
+        var f = v => v;
 
+        // 等同于
+        // var f = function (v) {
+        //     return v;
+        // };
+
+       console.log(f(5));
     </script>
 </head>
 <body>
