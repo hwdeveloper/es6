@@ -2,15 +2,15 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>数据结构</title>
+    <title>02copyWithin</title>
     <script>
         // 将3号位复制到0号位
-        [1, 2, 3, 4, 5].copyWithin(0, 3, 4)
-        // [4, 2, 3, 4, 5]
+        let array1=  [1, 2, 3, 4, 5].copyWithin(0, 3)
+        console.log(array1.toString())
 
         // -2相当于3号位，-1相当于4号位
-            [1, 2, 3, 4, 5].copyWithin(0, -2, -1)
-        // [4, 2, 3, 4, 5]
+        let array2=   [1, 2, 3, 4, 5].copyWithin(0, -2)
+        console.log(array2.toString())
 
 
     </script>
