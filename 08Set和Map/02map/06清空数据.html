@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06清空数据</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    class Studeng{
+        constructor(name,age){
+            this.name=name;
+            this.age=age;
+        }
+    }
+    var stu1 =new Studeng("小刚",19);
+    var stu2 =new Studeng("小美",19);
+    var stu3 =new Studeng("小莉",19);
+    let map = new Map();
+    map.set(1,stu1);
+    map.set(2,stu2);
+    map.set(3,stu3);
+
+    map.clear();
+    console.log(map.size);
+
+
+
+</script>
+</html>

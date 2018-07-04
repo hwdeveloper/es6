@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>07遍历数据</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    class Student{
+        constructor(name,age){
+            this.name=name;
+            this.age=age;
+        }
+    }
+    var stu1 =new Student("小刚",19);
+    var stu2 =new Student("小美",19);
+    var stu3 =new Student("小莉",19);
+    let map = new Map();
+    map.set(1,stu1);
+    map.set(2,stu2);
+    map.set(3,stu3);
+
+
+    map.forEach(function(value, key, map) {
+        console.log(key);
+        console.log(value);
+        console.log(map);
+    });
+
+</script>
+</html>

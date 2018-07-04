@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>02遍历数据</title>
+</head>
+<body>
+
+</body>
+<script>
+    class Studeng{
+        constructor(name,age){
+            this.name=name;
+            this.age=age;
+        }
+    }
+
+    var stu1 =new Studeng("小刚",19);
+    var stu2 =new Studeng("小美",19);
+    var stu3 =new Studeng("小莉",19);
+
+    var set = new Set();
+    set.add(stu1);
+    set.add(stu2);
+    set.add(stu3);
+    console.log(set.size);
+    set.clear();
+
+    console.log(set.size);
+</script>
+</html>
