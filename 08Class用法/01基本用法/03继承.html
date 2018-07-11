@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>继承</title>
+</head>
+<body>
+<h1>Class 可以通过extends关键字实现继承，这比 ES5 的通过修改原型链实现继承，要清晰和方便很多。</h1>
+</body>
+<script>
+    class Person {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+    }
+    class Student extends Person{
+        constructor(name, age,number) {
+            super(name,age);
+            this.number = number;
+        }
+    }
+</script>
+</html>

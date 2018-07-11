@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>静态方法</title>
+</head>
+<body>
+
+</body>
+<script>
+    class Person {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        static say( ){
+            return "你好";
+        }
+        getName() {
+            return this.name;
+        }
+    }
+    var person = new Person("小刚",19);
+    console.log(Person.say());
+</script>
+</html>

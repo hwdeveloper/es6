@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>为对象添加属性</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    class Student{
+        constructor(name, age) {
+            Object.assign(this, {name, age});
+        }
+    }
+    var student = new Student("小刚",18);
+    console.log(student.name+"的年龄是"+student.age);
+</script>
+</html>

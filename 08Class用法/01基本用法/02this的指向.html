@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this的指向</title>
+</head>
+<body>
+
+</body>
+<script>
+    class Person {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        say(){
+            return "你好"+this.getName();
+        }
+        getName() {
+            return this.name;
+        }
+    }
+
+    var person = new Person("小刚",19);
+    console.log(person.say());
+</script>
+</html>

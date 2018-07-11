@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.values</title>
+</head>
+<body>
+
+</body>
+<script>
+    class Student{
+        constructor(name, age) {
+            this.name=name;
+            this.age=age;
+        }
+    }
+
+    var stu = new Student("小刚",18);
+
+    var keys=Object.values(stu);
+    console.log(keys.toString());
+</script>
+</html>

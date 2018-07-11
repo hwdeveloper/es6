@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>同名属性的替换</title>
+</head>
+<body>
+<h1>遇到同名属性，Object.assign的处理方法是替换，而不是添加</h1>
+</body>
+<script>
+    const person = {name:"小刚",age:'成年了！' }
+    const student = {name:"小刚",age:19  }
+    var ob=Object.assign(student, person)
+
+    console.log(ob.age);
+</script>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03调用原型的方法</title>
+</head>
+<body>
+
+</body>
+<script>
+
+    class Person {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        say(){
+            return "我的年龄是"+this.age;
+        }
+    }
+
+    class Student extends Person{
+        constructor(name, age,number) {
+            super(name,age);
+            this.number=number;
+        }
+        hello(){
+            return super.say();
+        }
+    }
+    var stu = new Student("小刚",19,110);
+    console.log(stu.hello());
+
+
+</script>
+</html>

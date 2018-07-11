@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01setPrototypeOf</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    class Person{
+        constructor(name, age) {
+            this.name=name;
+            this.age=age;
+        }
+    }
+    var person = new Person("小刚",18);
+    class Student{
+
+    }
+    var stu = new Student()
+    var stu2=Object.setPrototypeOf(stu,person)
+    console.log(stu2.name);
+</script>
+</html>

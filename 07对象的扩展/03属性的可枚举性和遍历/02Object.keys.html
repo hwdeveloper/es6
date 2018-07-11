@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Object.keys</title>
+</head>
+<body>
+<h1>Object.keys返回一个数组，包括对象自身的（不含继承的）所有可枚举属性</h1>
+</body>
+<script>
+    class Student{
+        constructor(name, age) {
+            this.name=name;
+            this.age=age;
+        }
+    }
+
+    var stu = new Student("小刚",18);
+
+    var keys=Object.keys(stu);
+    console.log(keys.toString());
+</script>
+</html>

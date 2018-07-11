@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for in</title>
+</head>
+<body>
+
+</body>
+<script>
+    class Student{
+        constructor(name, age) {
+           this.name=name;
+           this.age=age;
+        }
+    }
+
+    var stu = new Student("小刚",18);
+
+    for(key in stu){
+        console.log(key+"的值是："+stu[key]);
+    }
+</script>
+</html>
