@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>01Array.of</title>
+    <script>
+        function Arrayof() {
+            //1，创建一个数组
+            var buffer=[];
+            //2,获得原本数据的长度
+            var length = arguments.length;
+            for(var i=0;i<length;i++){
+                buffer.push(arguments[i]);
+            }
+            return arguments;
+
+        }
+
+
+        let array= Arrayof(3, 11, 8);
+
+        console.log(array);
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>
