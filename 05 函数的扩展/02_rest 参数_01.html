@@ -4,14 +4,12 @@
     <meta charset="utf-8">
     <title>数据结构</title>
     <script>
-        function add(...values) {
-            let sum = 0;
-            for (var val of values) {
-                sum += val;
+        function say(...names) {
+            for(let name of names){
+                console.log(name);
             }
-            return sum;
         }
-        add(2, 5, 3) // 10
+        say('小刚','小花','小美');
     </script>
 </head>
 <body>

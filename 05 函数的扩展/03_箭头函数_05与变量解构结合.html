@@ -4,13 +4,23 @@
     <meta charset="utf-8">
     <title>数据结构</title>
     <script>
-        const full = ({ name, age }) => name + '的年龄是' + age;
-
         function Person(name,age) {
             this.name=name;
             this.age=age;
         }
-        console.log(full(new Person('小刚',18)));
+
+        var person = new Person('小刚',18);
+
+        // function say(person) {
+        //     var name ="富有的"+ person.name;
+        //     return name+"年龄是"+person.age;
+        // }
+
+        var say = ({name,age}) => {
+            var name ="富有的"+ name;
+            return name+"年龄是"+age;
+        }
+        console.log(say(person));
     </script>
 </head>
 <body>
