@@ -5,12 +5,10 @@
     <title>数据结构</title>
     <script>
         const array1 = [1, 2,3];
-        const array2 = [...array1];
+        const array2 =[...array1];
 
-        array2[0]=5;
-
-        console.log(array1[0]);
-        console.log(array2[0]);
+        array1[0]=5;
+        console.log(array2[0]);//输出的是1 ,说明这是一个深拷贝
 
     </script>
 </head>
