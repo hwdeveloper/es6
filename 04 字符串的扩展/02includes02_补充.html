@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script>
+
+        String.prototype.include2=function (data) {
+            var length = this.length;
+            var dataLength=data.length;
+            if(dataLength>length){
+                return false;
+            }else{
+                let array = data.split('');
+                let size =length-dataLength;
+
+                for(let i=0;i<size;i++){
+                   let index=0;
+                   while(this[i+index]==data[index]&&index<dataLength){
+                       index++;
+                   }
+                   if(index==dataLength){
+                       return true;
+                   }
+                }
+                return false;
+
+            }
+        }
+        let data = 'oooHello world!';
+        
+
+
+        console.log(data.include2('Hello2'))
+        //data.include2('Hello');
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>
