@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>飞机游戏</title>
+    <script src="js/EmenyBullet.js"></script>
+    <script src="js/Emeny.js"></script>
+    <script src="js/Bullet.js"></script>
+    <script src="js/Plyaer.js"></script>
+    <script src="js/Map.js"></script>
+    <script src="js/Game.js"></script>
+</head>
+<body onload="start()">
+
+</body>
+
+<script>
+
+
+
+    
+    function start() {
+        game = new Game();
+        game.init();
+
+        setInterval('game.run()',100);
+
+        document.onkeypress=function (ev) {
+            game.onkeypress(ev.keyCode);
+        }
+    }
+
+</script>
+</html>
