@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    Array.prototype.finder=function (call) {
+        var length = this.length;
+        for(var i=0;i<length;i++){
+            if( call(this[i])){
+                return true;
+            }
+        }
+        return false;
+    }
+    var data = new Array();
+    data.push(1);
+    data.push(2);
+    data.push(3);
+    data.push(4);
+   var value= data.finder(function (item) {
+        console.log(item);
+        return item>5;
+    });
+   console.log(value);
+</script>
+</html>

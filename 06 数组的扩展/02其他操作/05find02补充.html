@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+
+<script>
+    Array.prototype.find2=function (call) {
+        let length = this.length;
+        for(var i=0;i<length;i++){
+            if( call(this[i])){
+                return this[i];
+            }
+        }
+        return false;
+    }
+    let data = new Array();
+    data.push(1);
+    data.push(2);
+    data.push(3);
+    data.push(4);
+    let value= data.find2(function (item) {
+        //console.log(item);
+        return item>2;
+    });
+    console.log(value);
+</script>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script>
+
+        Array.prototype.fill2=function (data) {
+            //获得数组的长度
+            var length =this.length;
+            for(let i=0;i<length;i++){
+                this[i]=data;
+            }
+            return this;
+        }
+
+        let array1= ['a', 'b', 'c'].fill2(7)
+        console.log(array1.toString());
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

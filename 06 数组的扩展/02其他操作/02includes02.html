@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>数据结构</title>
+    <script>
+        
+        Array.prototype.includes2=function (data) {
+            //获得数组的长度
+            let length = this.length;
+            for(let i=0;i<length;i++){
+               if(this[i]==data){
+                   return true;
+               }
+            }
+            return false;
+        };
+      let buffer1=  [1, 2, 3].includes2(2);
+      console.log(buffer1);
+      let buffer2=  [1, 2, 3].includes2(4);
+      console.log(buffer2);
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>ui

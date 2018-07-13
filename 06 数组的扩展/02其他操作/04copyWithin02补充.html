@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>02copyWithin</title>
+    <script>
+        
+        Array.prototype.copyWithin2=function (target,start) {
+
+            //1，获得数组的长度
+            var length=this.length;
+            //2,判断条件
+            if(target<0||start>=length||target>=length||start<0)
+                return this;
+            for(let i=0;i<length-start;i++){
+                  this[i+target]=this[start+i];
+            }
+            return this;
+        }
+        // 将3号位复制到0号位
+        let array1=  [1, 2, 3, 4, 5].copyWithin2(0, 3)
+        console.log(array1.toString())
+
+
+
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>
