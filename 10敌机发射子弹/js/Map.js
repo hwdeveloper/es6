@@ -1,6 +1,5 @@
 class Map {
 
-
     constructor(game) {
 
         //每个图片的大小
