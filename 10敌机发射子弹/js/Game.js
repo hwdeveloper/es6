@@ -1,16 +1,7 @@
-function Game() {
-    var width= 480;
-    var height = 700;
-    //游戏盒子
-    var game;
-    //游戏地图
-    var map;
-    //创建飞机
-    var player;
-    //敌机
-    var emenyNum=2;
-    var emenys=[];
-    this.init=function () {
+class Game {
+
+    constructor() {
+        this.initArguments();
         this.initGame();
         this.initMap();
         this.initPlayer();
@@ -18,62 +9,66 @@ function Game() {
 
     }
 
-    this.initGame=function () {
-        game = document.createElement('div');
+    initArguments() {
+        this.width = 480;
+        this.height = 700;
+        //敌机
+        this.emenyNum = 2;
+        this.emenys = [];
+    }
+
+    initGame() {
+        this.game = document.createElement('div');
         //设置游戏盒子的大小
-        game.style.width=width+"px";
-        game.style.height=height+"px";
+        this.game.style.width = this.width + "px";
+        this.game.style.height = this.height + "px";
 
-        game.style.position="relative";
-        game.style.overflow="hidden";
+        this.game.style.position = "relative";
+        this.game.style.overflow = "hidden";
 
-        game.style.backgroundColor="#111222";
+        this.game.style.backgroundColor = "#111222";
         //设置居中
-        game.style.margin="auto";
+        this.game.style.margin = "auto";
 
-        document.body.appendChild(game);
+        document.body.appendChild(this.game);
     }
-    this.initMap=function () {
+
+    initMap() {
         //创建游戏地图对象
-        map = new Map();
-        //初始化
-        map.init(game);
+        this.map = new Map(this.game);
     }
 
-    this.initPlayer =function () {
+    initPlayer() {
         //创建飞机
-        player = new Plyaer();
-        //初始化
-        player.init(game,width,height);
+        this.player = new Plyaer(this.game, this.width, this.height);
     }
 
-    this.initEmeny=function () {
+    initEmeny() {
 
-        for(var i=0;i<emenyNum;i++){
+        for (let i = 0; i < this.emenyNum; i++) {
             // 创建敌机
-           var emeny = new Emeny();
-            //初始化
-            emeny.init(game);
-            emenys.push(emeny);
+            let emeny = new Emeny(this.game);
+            this.emenys.push(emeny);
         }
 
     }
 
-    this.run=function () {
-        map.run();
-        player.run();
+    run() {
+        this.map.run();
+        this.player.run();
+        let that = this;
 
-        emenys.forEach(function (emeny) {
+        this.emenys.forEach(function (emeny) {
             emeny.run();
             //如果碰撞到任何一个子弹就飞机销毁
-            if(emeny.collision(player.bullets)){
+            if (emeny.collision(that.player.bullets)) {
                 emeny.setBoom();
             }
         })
 
     }
 
-    this.onkeypress=function (keyCode){
-        player.onkeypress(keyCode);
+    onkeypress(keyCode) {
+        this.player.onkeypress(keyCode);
     }
 }

@@ -1,53 +1,51 @@
-function EmenyBullet() {
-    //子弹飞行的速度
-    var speedY=20;
-    //子弹的大小
-    this.width=11;
-    this.height=11;
+class EmenyBullet {
 
-    //子弹的坐标
-    this.bulletY;
-    this.bulletX;
-    //子弹的图片元素
-     var bullet;
+    constructor(game, x, y) {
+        //子弹飞行的速度
+        this.speedY = 20;
+        //子弹的大小
+        this.width = 11;
+        this.height = 11;
 
-    this.init=function (game,x,y) {
+        //子弹的坐标
+        this.bulletY;
+        this.bulletX;
+
         //创建图片元素
-        bullet = document.createElement('img')
+        this.bullet = document.createElement('img')
         //设置位置
-        bullet.style.position="absolute";
-        this.bulletY =y-this.height;
-        this.bulletX=x-this.width/2;
-        bullet.style.left=this.bulletX+"px";
-        bullet.style.top=this.bulletY+"px";
+        this.bullet.style.position = "absolute";
+        this.bulletY = y - this.height;
+        this.bulletX = x - this.width / 2;
+        this.bullet.style.left = this.bulletX + "px";
+        this.bullet.style.top = this.bulletY + "px";
 
         //设置子弹的图片
-        bullet.src="./img/enemyBullet.png";
-        bullet.style.width=this.width+"px";
-        bullet.style.height=this.height+"px";
+        this.bullet.src = "./img/enemyBullet.png";
+        this.bullet.style.width = this.width + "px";
+        this.bullet.style.height = this.height + "px";
         //添加到游戏盒子里面
-        game.appendChild(bullet);
-
+        game.appendChild(this.bullet);
     }
 
-    this.run=function () {
-        this.bulletY = this.bulletY+speedY;
-        bullet.style.top=this.bulletY+"px";
+    run() {
+        this.bulletY = this.bulletY + this.speedY;
+        this.bullet.style.top = this.bulletY + "px";
     }
-    
-    this.isDestroy=function () {
-        if(this.bulletY>700+this.height){
+
+    isDestroy() {
+        if (this.bulletY > 700 + this.height) {
             return true;
         }
-        else{
+        else {
             return false;
         }
     }
-    
-    this.destroy=function () {
 
-        bullet.remove();
+    destroy() {
+
+        this.bullet.remove();
 
     }
-    
+
 }

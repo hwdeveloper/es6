@@ -1,48 +1,46 @@
-function Plyaer() {
+class Plyaer {
 
-    //屏幕的大小
-    var bgW;
-    var bgH;
 
-    var width = 75;
-    var height = 50;
-    //飞机的坐标
-    var playerX;
-    var playerY;
+    constructor(buffer, bgW1, bgH1) {
 
-    var speedX = 10;
-    var speedY = 10;
-    //图片元素
-    var player;
-    //游戏盒子
-    var game;
+        this.bullets = [];
 
-    this.init = function (buffer, bgW1, bgH1) {
-        game = buffer;
-        bgW = bgW1;
-        bgH = bgH1;
-        playerX = (bgW - width) / 2;
-        playerY = bgH - height;
+        this.PLAYER_UP = 119;
+        this.PLAYER_DOWN = 115;
+        this.PLAYER_LEFT = 97;
+        this.PLAYER_RIGHT = 100;
+        this.PLAYER_FIRE = 32;
+
+        this.width = 75;
+        this.height = 50;
+        this.speedX = 10;
+        this.speedY = 10;
+        this.time = 0;
+
+        this.game = buffer;
+        this.bgW = bgW1;
+        this.bgH = bgH1;
+        this.playerX = (this.bgW - this.width) / 2;
+        this.playerY = this.bgH - this.height;
         //创建图片元素
-        player = document.createElement('img');
+        this.player = document.createElement('img');
         //设置位置
-        player.style.position = "absolute";
-        player.style.left = playerX + "px";
-        player.style.top = playerY + "px";
+        this.player.style.position = "absolute";
+        this.player.style.left = this.playerX + "px";
+        this.player.style.top = this.playerY + "px";
         //设置图片的来源
-        player.src = "./img/player.png";
-        player.style.width = width + "px";
-        player.style.height = height + "px";
+        this.player.src = "./img/player.png";
+        this.player.style.width = this.width + "px";
+        this.player.style.height = this.height + "px";
         //把飞机添加到游戏盒子里面
-        game.appendChild(player);
+        this.game.appendChild(this.player);
 
     }
 
-    var time = 0;
 
-    this.run = function () {
+    run() {
 
-        for (var i = 0; i < this.bullets.length; i++) {
+        for (let i = 0; i < this.bullets.length; i++) {
             this.bullets[i].run();
             if (this.bullets[i].isDestroy()) {
 
@@ -53,70 +51,63 @@ function Plyaer() {
             }
         }
 
-        time++;
-        if (time % 10 == 0)
+        this.time++;
+        if (this.time % 10 == 0)
             this.fire();
 
     }
 
-    var PLAYER_UP = 119;
-    var PLAYER_DOWN = 115;
-    var PLAYER_LEFT = 97;
-    var PLAYER_RIGHT = 100;
-    var PLAYER_FIRE = 32;
 
-    this.onkeypress = function (keyCode) {
+    onkeypress(keyCode) {
         switch (keyCode) {
-            case PLAYER_UP:
+            case this.PLAYER_UP:
                 this.moveUp();
                 break;
-            case PLAYER_DOWN:
+            case this.PLAYER_DOWN:
                 this.moveDown();
                 break;
-            case PLAYER_LEFT:
+            case this.PLAYER_LEFT:
                 this.moveLeft();
                 break;
-            case PLAYER_RIGHT:
+            case this.PLAYER_RIGHT:
                 this.moveRight();
                 break;
-            case PLAYER_FIRE:
+            case this.PLAYER_FIRE:
                 this.fire();
                 break;
         }
     }
 
-    this.moveUp = function () {
-        playerY = playerY - speedY;
-        if (playerY < 200)
-            playerY = 200;
-        player.style.top = playerY + "px";
+    moveUp() {
+        this.playerY = this.playerY - this.speedY;
+        if (this.playerY < 200)
+            this.playerY = 200;
+        this.player.style.top = this.playerY + "px";
     }
 
-    this.moveDown = function () {
-        playerY = playerY + speedY;
-        if (playerY > bgH - height)
-            playerY = bgH - height;
-        player.style.top = playerY + "px";
+    moveDown() {
+        this.playerY = this.playerY + this.speedY;
+        if (this.playerY > this.bgH - this.height)
+            this.playerY = this.bgH - this.height;
+        this.player.style.top = this.playerY + "px";
     }
 
-    this.moveLeft = function () {
-        playerX = playerX - speedX;
-        if (playerX < 0)
-            playerX = 0;
-        player.style.left = playerX + "px";
+    moveLeft() {
+        this.playerX = this.playerX - this.speedX;
+        if (this.playerX < 0)
+            this.playerX = 0;
+        this.player.style.left = this.playerX + "px";
     }
 
-    this.moveRight = function () {
-        playerX = playerX + speedX;
-        if (playerX > bgW - width)
-            playerX = bgW - width;
-        player.style.left = playerX + "px";
+    moveRight() {
+        this.playerX = this.playerX + this.speedX;
+        if (this.playerX > this.bgW - this.width)
+            this.playerX = this.bgW - this.width;
+        this.player.style.left = this.playerX + "px";
     }
 
-    this.bullets = [];
-    this.fire = function () {
-        var bullet = new Bullet();
-        bullet.init(game, playerX + width / 2, playerY)
+    fire() {
+        var bullet = new Bullet(this.game, this.playerX + this.width / 2, this.playerY);
         this.bullets.push(bullet);
     }
 

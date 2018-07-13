@@ -1,157 +1,155 @@
-function Emeny() {
+class Emeny {
 
-    //敌机的位置
-    var emenyX;
-    var emenyY;
-    //敌机飞行的速度
-    var speedX=2;
-    var speedY=5;
-    //敌机的宽度和高度
-    var emenyW=37;
-    var emenyH=28;
-    //敌机的类型
-    var type;
-    //图片元素
-    var emeny;
-    //游戏盒子
-    var game;
-    this.init=function (buffer) {
-        game=buffer;
+    constructor(buffer) {
+        //敌机飞行的速度
+        this.speedX = 2;
+        this.speedY = 5;
+        //敌机的宽度和高度
+        this.emenyW = 37;
+        this.emenyH = 28;
+
+        this.EMENY_NORMAL = 0;
+        this.EMENY_BOOM = this.EMENY_NORMAL + 1;
+        this.state = this.EMENY_NORMAL;
+
+
+        this.index = -1;
+        this.booms = ['./img/boom_01.png', './img/boom_02.gif', './img/boom_03.gif', './img/boom_04.gif', './img/boom_05.gif', './img/boom_06.png'];
+
+
+        this.fireIndex = 0;
+
+        this.emenyBullets = [];
+
+        this.game = buffer;
         //创建敌机
-        emeny = document.createElement('img');
+        this.emeny = document.createElement('img');
         //设置位置
-        emeny.style.position="absolute";
+        this.emeny.style.position = "absolute";
         this.setPosition();
         //把敌机加到游戏盒子
-        game.appendChild(emeny);
-
+        this.game.appendChild(this.emeny);
     }
-    
-    this.setPosition=function () {
+
+
+    setPosition() {
         //随机位置
-        emenyX = Math.floor(Math.random()*(480-emenyW));
-        emenyY = -Math.floor(Math.random()*400);
-        emeny.style.left=emenyX+"px";
-        emeny.style.top=emenyY+"px";
+        this.emenyX = Math.floor(Math.random() * (480 - this.emenyW));
+        this.emenyY = -Math.floor(Math.random() * 400);
+        this.emeny.style.left = this.emenyX + "px";
+        this.emeny.style.top = this.emenyY + "px";
         //随机敌机的类型
-        type = Math.floor(Math.random()*2);
+        this.type = Math.floor(Math.random() * 2);
 
-        if(type==0){
-            emeny.src="./img/enemy1.png";
-        }else{
-            emeny.src="./img/enemy2.png";
+        if (this.type == 0) {
+            this.emeny.src = "./img/enemy1.png";
+        } else {
+            this.emeny.src = "./img/enemy2.png";
         }
-        emenyW=37+Math.floor(Math.random()*20);
-        emenyH=28+Math.floor(Math.random()*10);
-        emeny.style.width=emenyW+"px";
-        emeny.style.height=emenyH+"px";
+        this.emenyW = 37 + Math.floor(Math.random() * 20);
+        this.emenyH = 28 + Math.floor(Math.random() * 10);
+        this.emeny.style.width = this.emenyW + "px";
+        this.emeny.style.height = this.emenyH + "px";
         //敌机水平方向
-        if(Math.floor(Math.random()*2)==0){
-            speedX=speedX+Math.floor(Math.random()*20);
-            speedX = -speedX;
+        if (Math.floor(Math.random() * 2) == 0) {
+            this.speedX = this.speedX + Math.floor(Math.random() * 20);
+            this.speedX = -this.speedX;
         }
     }
-    
-    this.collision=function (bullets) {
-        var isCollision=false;
+
+    collision(bullets) {
+        let isCollision = false;
+        let that = this;
         bullets.forEach(function (bullet) {
             //检测主机发出的子弹是否和敌机发出的子弹有碰撞
 
-
-            emenyBullets.forEach(function (emenyBullet) {
-                if(emenyBullet.bulletX<(bullet.bulletX+bullet.width)&&
-                    (emenyBullet.bulletX+emenyBullet.width)>bullet.bulletX&&
-                    (emenyBullet.bulletY+emenyBullet.height)>bullet.bulletY){
+            that.emenyBullets.forEach(function (emenyBullet) {
+                if (emenyBullet.bulletX < (bullet.bulletX + bullet.width) &&
+                    (emenyBullet.bulletX + emenyBullet.width) > bullet.bulletX &&
+                    (emenyBullet.bulletY + emenyBullet.height) > bullet.bulletY) {
                     //让子弹消失
-                    emenyBullet.bulletY=701+emenyBullet.height;
+                    emenyBullet.bulletY = 701 + emenyBullet.height;
                 }
             })
 
             //检测主机发出的子弹是否和敌机有碰撞
-            if(emenyX<(bullet.bulletX+bullet.width)&&
-                (emenyX+emenyW)>bullet.bulletX&&
-                (emenyY+emenyH)>bullet.bulletY){
+            if (that.emenyX < (bullet.bulletX + bullet.width) &&
+                (that.emenyX + that.emenyW) > bullet.bulletX &&
+                (that.emenyY + that.emenyH) > bullet.bulletY) {
                 //让子弹消失
-                bullet.bulletY=-bullet.height-1;
-                isCollision=true;
+                bullet.bulletY = -bullet.height - 1;
+                isCollision = true;
                 return;
             }
         })
         return isCollision;
     }
-    
-    this.run=function () {
 
-        switch(state){
-            case EMENY_NORMAL:
+    run() {
+
+        switch (this.state) {
+            case this.EMENY_NORMAL:
                 this.fly();
                 this.fire();
                 break;
-            case EMENY_BOOM:
+            case this.EMENY_BOOM:
                 this.explosion();
                 break;
         }
     }
 
-    const EMENY_NORMAL=0;
-    const EMENY_BOOM=EMENY_NORMAL+1;
-    let state=EMENY_NORMAL;
-    
-    this.fly=function () {
+
+    fly() {
         //运动
-        emenyY = emenyY+speedY;
-        if(emenyY>800){
+        this.emenyY = this.emenyY + this.speedY;
+        if (this.emenyY > 800) {
             this.setPosition();
         }
-        emenyX = emenyX+speedX;
-        if(emenyX<0){
-            emenyX=0;
-            speedX=-speedX;
+        this.emenyX = this.emenyX + this.speedX;
+        if (this.emenyX < 0) {
+            this.emenyX = 0;
+            this.speedX = -this.speedX;
         }
-        if(emenyX>480-emenyW){
-            emenyX=480-emenyW;
-            speedX=-speedX;
+        if (this.emenyX > 480 - this.emenyW) {
+            this.emenyX = 480 - this.emenyW;
+            this.speedX = -this.speedX;
         }
-        emeny.style.left=emenyX+"px";
-        emeny.style.top=emenyY+"px";
+        this.emeny.style.left = this.emenyX + "px";
+        this.emeny.style.top = this.emenyY + "px";
     }
-    var index=-1;
-    var booms=['./img/boom_01.png','./img/boom_02.gif','./img/boom_03.gif','./img/boom_04.gif','./img/boom_05.gif','./img/boom_06.png'];
-    this.explosion=function () {
-        index++;
-        if(index>=6){
-            state=EMENY_NORMAL;
-            index=-1;
+
+    explosion() {
+        this.index++;
+        if (this.index >= 6) {
+            this.state = this.EMENY_NORMAL;
+            this.index = -1;
             this.setPosition();
-        }else{
-            emeny.src=booms[index];
+        } else {
+            this.emeny.src = this.booms[this.index];
         }
     }
 
-    var fireIndex=0;
 
-   var emenyBullets=[];
-    this.fire=function () {
-        fireIndex++;
-        if(fireIndex%30==0){
-            var emenyBullet = new EmenyBullet();
-            emenyBullet.init(game,emenyX+emenyW/2,emenyY+emenyH);
-           emenyBullets.push(emenyBullet);
+    fire() {
+        this.fireIndex++;
+        if (this.fireIndex % 30 == 0) {
+            let emenyBullet = new EmenyBullet(this.game, this.emenyX + this.emenyW / 2, this.emenyY + this.emenyH);
+            this.emenyBullets.push(emenyBullet);
         }
 
-        for(var i=0;i<emenyBullets.length;i++){
-            emenyBullets[i].run();
+        for (let i = 0; i < this.emenyBullets.length; i++) {
+            this.emenyBullets[i].run();
             //判断子弹是否飞出屏幕，如果飞出屏幕就销毁
-            if(emenyBullets[i].isDestroy()){
-                emenyBullets[i].destroy();
-                emenyBullets.slice(i,1);
+            if (this.emenyBullets[i].isDestroy()) {
+                this.emenyBullets[i].destroy();
+                this.emenyBullets.slice(i, 1);
             }
         }
 
     }
-    
-    
-    this.setBoom=function () {
-        state=EMENY_BOOM;
+
+
+    setBoom() {
+        this.state = this.EMENY_BOOM;
     }
 }

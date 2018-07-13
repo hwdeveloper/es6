@@ -11,21 +11,13 @@
     <script src="js/Game.js"></script>
 </head>
 <body onload="start()">
-
 </body>
-
 <script>
-
-
-
-    
     function start() {
         game = new Game();
-        game.init();
+        setInterval('game.run()', 100);
 
-        setInterval('game.run()',100);
-
-        document.onkeypress=function (ev) {
+        document.onkeypress = function (ev) {
             game.onkeypress(ev.keyCode);
         }
     }
